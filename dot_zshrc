@@ -1,11 +1,11 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
@@ -85,35 +85,48 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# general use
-alias ls='eza'                                                          # ls
-alias l='eza -lbF --git'                                                # list, size, type, git
-alias ll='eza -lbGF --git'                                             # long list
-alias llm='eza -lbGd --git --sort=modified'                            # long list, modified date sort
-alias la='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
-alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+alias ls='eza'										# ls
+alias l='eza -lbF --git'								# list, size, type, git
+alias ll='eza -lbGF --git'								# long list
+alias llm='eza -LbGd --git --sort=modified'						# long list, sorted by modified date
+alias la='eza -lbhHigUmuSa --time-style=long-iso --git --color-scale'			# list all
+alias lx='eza -lbhHigUmusa@ --time-style=long-iso --git --color-scale'			# list all, with extended list
 
-# specialty views
-alias lS='eza -1'                                                              # one column, just names
-alias lt='eza --tree --level=2'                                         # tree
+alias lS='eza -l'									# one column with just names
+alias lt='eza --tree --level=2'								# tree
 
-# redefine prompt_context for hiding user@hostname
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-  fi
+# Redefine prompt_context() to hide username
+prompt_context() { 
+	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+		prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+	fi
 }
+
+# Set terminal colors from wal
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+# Not supported in the "fish" shell.
+(cat ~/.cache/wal/sequences &)
+
+# Alternative (blocks terminal for 0-3ms)
+ cat ~/.cache/wal/sequences
+
+export EDITOR=nvim
