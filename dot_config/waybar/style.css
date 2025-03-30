@@ -1,3 +1,12 @@
+/*
+ * Waybar style.css for Hyprland
+ * Author: Suribii
+ * Version 2.2pre 
+ * Last updated: 3/30/25
+ */
+
+
+
 /* -----------------------------------------------------------------------------
  * Keyframes
  * -------------------------------------------------------------------------- */
@@ -40,7 +49,8 @@
 
 /* The whole bar */
 #waybar {
-    background: #0D090D;
+    background: #15161e;
+    opacity:0.9;
     color: white;
     font-family: Cantarell, Noto Sans, sans-serif;
     font-size: 13px;
@@ -174,10 +184,10 @@
     color: #888888;
 }
 
-#workspaces button.focused {
-    border-color: #4c7899;
+#workspaces button.active {
+    border-color: #15161e;
     color: white;
-    background-color: #285577;
+    background-color: #bb9af7;
 }
 
 #workspaces button.urgent {
