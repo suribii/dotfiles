@@ -40,15 +40,16 @@
 
 /* Reset all styles */
 * {
-    border: none;
-    border-radius: 0;
+    border: 0;
+    border-radius: 5;
     min-height: 0;
     margin: 0;
-    padding: 0;
+    padding: 1;
 }
 
 /* The whole bar */
-#waybar {
+#waybar { 
+    border: 3px solid rgba(59, 59, 59, 1);
     background: #15161e;
     opacity:0.9;
     color: white;
@@ -136,7 +137,7 @@
     background: #64727D;
     border-top: 2px solid white;
     /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
+    padding-bottom: 0px;
 }
 
 #network {
@@ -176,7 +177,7 @@
 }
 
 #workspaces button {
-    border-top: 2px solid transparent;
+    /* border-top: 2px solid transparent; */
     /* To compensate for the top border and still have vertical centering */
     padding-bottom: 2px;
     padding-left: 10px;
@@ -186,7 +187,7 @@
 
 #workspaces button.active {
     border-color: #15161e;
-    color: white;
+    color: #15161e;
     background-color: #bb9af7;
 }
 
